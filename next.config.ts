@@ -8,9 +8,15 @@ const securityHeaders = [
   // Only send origin in referrer, not full URL
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   // Restrict browser feature access
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=()",
+  },
   // Force HTTPS for 1 year (enable once you have a domain + TLS)
-  { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+  {
+    key: "Strict-Transport-Security",
+    value: "max-age=31536000; includeSubDomains",
+  },
   // Content Security Policy — scoped to what this portfolio actually uses
   {
     key: "Content-Security-Policy",
@@ -30,6 +36,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  output: "export",
+  basePath: "/portfolio",
+  images: { unoptimized: true },
   async headers() {
     return [
       {
